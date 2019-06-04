@@ -1,5 +1,3 @@
-#https://realpython.com/run-python-scripts/
-
 from flask import Flask, make_response, request, render_template
 from werkzeug.utils import secure_filename
 import pandas as pd
@@ -11,8 +9,8 @@ import os
 app = Flask(__name__)
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-process_path = os.path.join(dir_path,'process.py')
-plot_path = os.path.join(dir_path,'plots.py')
+econProcess_path = os.path.join(dir_path,'econProcess.py')
+econPlots_path = os.path.join(dir_path,'econPlots.py')
 
 
 #cache buster function
@@ -28,26 +26,20 @@ def add_header(response):
 def form():
     return render_template('form.html')
 
-@app.route('/transform', methods=["POST"])
-def transform_view():
-
+@app.route('/econ', methods=["POST"])
+def econ_process():
     #get data file from HTML
     f = request.files['data_file']
     filename = secure_filename(f.filename)
     f.save(filename)
-
     #get data into Pandas and save to static
     df = pd.read_csv(filename, index_col='Date', parse_dates=True)
-    df.to_csv('static/data.csv')
-
+    df.to_csv('static/econRawData.csv')
     #run .py files to process & plot data
-    os.system(f'py {process_path}')
-    time.sleep(2)
-    os.system(f'py {plot_path}')
-
+    os.system(f'py {econProcess_path}')
+    os.system(f'py {econPlots_path}')
     #read data.csv in Pandas to show in Pandas to HTML
-    df2 = pd.read_csv('static/dataProcessed.csv', index_col='Date', parse_dates=True)
-
+    df2 = pd.read_csv('static/econDataProcessed.csv', index_col='Date', parse_dates=True)
     resp = add_header(make_response(render_template('table.html', tables=[df2.to_html(classes='data')], titles=df.columns.values)))
     return resp
 
