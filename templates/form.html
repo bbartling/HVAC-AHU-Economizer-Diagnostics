@@ -1,16 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv='cache-control' content='no-cache'>
-		<meta http-equiv='expires' content='0'>
-		<meta http-equiv='pragma' content='no-cache'>
-	</head>
-	<body>
-		<h1>Economizer Diagnostics</h1>
-		<form action="/econ" method="post" enctype="multipart/form-data">
-			<input type="file" name="data_file" />
-			<input type="submit" />
-		</form>
-		<h2>*Note - Check plot timestamp after each analysis!</h2>
-	</body>
-</html>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<style>
+  .red-text {
+    color: red;
+  }
+
+  h2 {
+    font-family: Lobster, Monospace;
+  }
+
+  p {
+    font-size: 16px;
+    font-family: Monospace;
+  }
+
+  .thick-green-border {
+    border-color: green;
+    border-width: 10px;
+    border-style: solid;
+    border-radius: 50%;
+  }
+
+  .smaller-image {
+    width: 400px;
+  }
+</style>
+
+<h2 class="red-text">RCx Reporter</h2>
+
+<p>This is a simple tool created with the intention of benefiting the retrocommissioning (RCx) industry. With better data analysis we can provide better results which will only help promote more work in the existing building commissioning industry. With more work in the industry we can lower green house gas emmissions, save energy, lower utility costs, and create better indoor environments.</p>
+
+<p>Click the green cirlce below for a link to Berkly Lab Building Technology & Urban Systems Division website, what is RCx? Picture below curtiousy of wikipedia:</p>
+
+<a href="http://cx.lbl.gov/definition.html"><img class="smaller-image thick-green-border" src="https://upload.wikimedia.org/wikipedia/commons/0/00/Air_handling_unit.JPG" ></a>
+
+<p>Upload CSV file for economizer diagnostics, click here for <a href="https://medium.com/getting-reinforcement-learning-into-the-bas"> documentation</a>. </p>
+<form action="/econ" method="post" enctype="multipart/form-data">
+	<input type="file" name="data_file" />
+	<input type="submit" />
+</form>
+<br/>
+<p>COMING SOON, Upload CSV file for heating plant analysis</p>
+<p>COMING SOON, Upload CSV file for AHU operation analysis</p>
+<p>COMING SOON, Combine two datasets in CSV format</p>
+<br/>
+<center>Created by Ben Bartling, CEM, CMVP </center>
+<center>UHL Company Duluth, MN </center>
+<center>benb@uhlco.com </center>
